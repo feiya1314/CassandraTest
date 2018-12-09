@@ -21,7 +21,7 @@ public class CassandraTest {
             sessionManager.setCassandraUserName("cassandra");
             sessionManager.setCassandraPassword("cassandra");
             sessionManager.setContactPoint("192.168.3.8");
-            sessionManager.setReplicate("{\"class\": \"NetworkTopologyStrategy\",\"DC1\": \"2\",\"DC2\": \"2\"}");
+            sessionManager.setReplication("{\"class\": \"NetworkTopologyStrategy\",\"DC1\": \"2\",\"DC2\": \"2\"}");
             Session session = sessionManager.getSession();
             cluster = session.getCluster();
             CassandraManageService cassandraManageService = new CassandraManageServiceImpl(sessionManager);
