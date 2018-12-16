@@ -59,28 +59,6 @@ public class SessionManager {
         cluster = builder.build();
         sessionRepository = new SessionRepository(cluster,configuration,replication);
     }
-   /* private Cluster getCluster() {
-        if (cluster == null) {
-            cluster = Cluster.builder().addContactPoint(contactPoint)
-                    .addContactPointsWithPorts()
-                    .withAuthProvider(new PlainTextAuthProvider(cassandraUserName, cassandraPassword))
-                    .withPort(port)
-                    .withPoolingOptions(new PoolingOptions()
-                            .setCoreConnectionsPerHost(HostDistance.LOCAL, 4)
-                            .setMaxConnectionsPerHost(HostDistance.LOCAL, 10)
-                            .setCoreConnectionsPerHost(HostDistance.REMOTE, 2)
-                            .setMaxConnectionsPerHost(HostDistance.REMOTE, 4))
-                     //.withCredentials(cassandraUserName, cassandraPassword)
-                    .withQueryOptions(prepareQueryOptions())
-                    .withCompression(ProtocolOptions.Compression.SNAPPY)
-                    .withSocketOptions(prepareSocketOptions())
-                    .withTimestampGenerator( ServerSideTimestampGenerator.INSTANCE)
-                    .withRetryPolicy(prepareRetryPolicy())
-                    .withLoadBalancingPolicy(loadBalancingPolicy == null ? defaultLoadBalance() : loadBalancingPolicy)
-                    .build();
-        }
-        return cluster;
-    }*/
 
    private InetSocketAddress[] prepareContactPoints(String contactPoints){
        String[] contactPointArr = StringUtils.split(contactPoints,",");
