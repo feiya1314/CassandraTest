@@ -1,6 +1,4 @@
-package main.loadbalance;
-
-import com.datastax.driver.core.Host;
+package main.java.com.yufeiblog.cassandra.loadbalance;
 
 import java.util.List;
 import java.util.Map;

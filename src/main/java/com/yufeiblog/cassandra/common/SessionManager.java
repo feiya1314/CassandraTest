@@ -1,9 +1,8 @@
-package main.common;
+package main.java.com.yufeiblog.cassandra.common;
 
 import com.datastax.driver.core.*;
 import com.datastax.driver.core.policies.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;

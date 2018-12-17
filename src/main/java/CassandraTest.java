@@ -3,9 +3,9 @@ package main.java;
 import com.datastax.driver.core.*;
 import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
-import main.common.SessionManager;
-import main.service.CassandraManageService;
-import main.service.CassandraManageServiceImpl;
+import main.java.com.yufeiblog.cassandra.common.SessionManager;
+import main.java.com.yufeiblog.cassandra.service.CassandraManageService;
+import main.java.com.yufeiblog.cassandra.service.CassandraManageServiceImpl;
 
 public class CassandraTest {
     public static void main(String[] args) {
@@ -51,7 +51,7 @@ public class CassandraTest {
             //session.execute()
             Insert insert = QueryBuilder.insertInto(tableMetadata);
             //insert.s
-
+            //BoundStatement boundStatement
             session.execute("INSERT INTO " + keyspace + "." + tablenName + "(pk, uid, username,password) VALUES(100000,1,'jack','Hyderabad')");
             session.close();
         } catch (Exception e) {
