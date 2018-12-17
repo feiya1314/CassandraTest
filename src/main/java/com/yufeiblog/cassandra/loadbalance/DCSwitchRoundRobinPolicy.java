@@ -1,4 +1,4 @@
-package main.java.com.yufeiblog.cassandra.loadbalance;
+package com.yufeiblog.cassandra.loadbalance;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Host;

@@ -1,4 +1,4 @@
-package main.java.com.yufeiblog.cassandra.common;
+package com.yufeiblog.cassandra.common;
 
 import com.datastax.driver.core.*;
 import com.datastax.driver.core.policies.*;

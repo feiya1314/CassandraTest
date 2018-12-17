@@ -1,11 +1,11 @@
-package main.java;
+package com.yufeiblog.cassandra.test;
 
 import com.datastax.driver.core.*;
 import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
-import main.java.com.yufeiblog.cassandra.common.SessionManager;
-import main.java.com.yufeiblog.cassandra.service.CassandraManageService;
-import main.java.com.yufeiblog.cassandra.service.CassandraManageServiceImpl;
+import com.yufeiblog.cassandra.common.SessionManager;
+import com.yufeiblog.cassandra.service.CassandraManageService;
+import com.yufeiblog.cassandra.service.CassandraManageServiceImpl;
 
 public class CassandraTest {
     public static void main(String[] args) {

@@ -1,11 +1,11 @@
-package main.java.com.yufeiblog.cassandra.common;
+package com.yufeiblog.cassandra.common;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.policies.LoadBalancingPolicy;
-import main.java.com.yufeiblog.cassandra.dcmonitor.DCStatus;
-import main.java.com.yufeiblog.cassandra.dcmonitor.DCStatusListener;
-import main.java.com.yufeiblog.cassandra.loadbalance.BaseSwitchLoadbalancePolicy;
+import com.yufeiblog.cassandra.dcmonitor.DCStatus;
+import com.yufeiblog.cassandra.dcmonitor.DCStatusListener;
+import com.yufeiblog.cassandra.loadbalance.BaseSwitchLoadbalancePolicy;
 
 import java.util.Map;
 

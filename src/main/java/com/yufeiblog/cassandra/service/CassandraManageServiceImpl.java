@@ -1,12 +1,12 @@
-package main.java.com.yufeiblog.cassandra.service;
+package com.yufeiblog.cassandra.service;
 
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.schemabuilder.SchemaBuilder;
-import main.java.com.yufeiblog.cassandra.common.SessionManager;
-import main.java.com.yufeiblog.cassandra.common.TableOptions;
-import main.java.com.yufeiblog.cassandra.result.CreateKeyspaceResult;
-import main.java.com.yufeiblog.cassandra.result.CreateUserResult;
-import main.java.com.yufeiblog.cassandra.result.Result;
+import com.yufeiblog.cassandra.common.SessionManager;
+import com.yufeiblog.cassandra.common.TableOptions;
+import com.yufeiblog.cassandra.result.CreateKeyspaceResult;
+import com.yufeiblog.cassandra.result.CreateUserResult;
+import com.yufeiblog.cassandra.result.Result;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package main.java.com.yufeiblog.cassandra.service;
+package com.yufeiblog.cassandra.service;
 
 public class CassandraManageFace {
 }

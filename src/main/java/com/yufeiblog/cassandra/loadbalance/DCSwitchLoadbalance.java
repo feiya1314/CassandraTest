@@ -1,4 +1,4 @@
-package main.java.com.yufeiblog.cassandra.loadbalance;
+package com.yufeiblog.cassandra.loadbalance;
 
 import java.util.List;
 import java.util.Map;

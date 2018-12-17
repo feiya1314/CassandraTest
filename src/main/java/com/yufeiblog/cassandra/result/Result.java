@@ -1,6 +1,6 @@
-package main.java.com.yufeiblog.cassandra.result;
+package com.yufeiblog.cassandra.result;
 
-import main.java.com.yufeiblog.cassandra.common.Constant;
+import com.yufeiblog.cassandra.common.Constant;
 
 public abstract class Result {
     private String returnCode;

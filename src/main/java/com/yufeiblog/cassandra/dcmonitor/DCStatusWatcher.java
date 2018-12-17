@@ -1,6 +1,6 @@
-package main.java.com.yufeiblog.cassandra.dcmonitor;
+package com.yufeiblog.cassandra.dcmonitor;
 
-import main.java.com.yufeiblog.cassandra.common.SessionRepository;
+import com.yufeiblog.cassandra.common.SessionRepository;
 
 public class DCStatusWatcher implements EtcdWatcher{
     private SessionRepository sessionRepository;

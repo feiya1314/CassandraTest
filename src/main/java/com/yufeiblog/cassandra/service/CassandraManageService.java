@@ -1,8 +1,8 @@
-package main.java.com.yufeiblog.cassandra.service;
+package com.yufeiblog.cassandra.service;
 
-import main.java.com.yufeiblog.cassandra.common.TableOptions;
-import main.java.com.yufeiblog.cassandra.result.CreateUserResult;
-import main.java.com.yufeiblog.cassandra.result.Result;
+import com.yufeiblog.cassandra.common.TableOptions;
+import com.yufeiblog.cassandra.result.CreateUserResult;
+import com.yufeiblog.cassandra.result.Result;
 
 import java.util.Map;
 

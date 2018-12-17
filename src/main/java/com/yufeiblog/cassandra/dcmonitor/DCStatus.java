@@ -1,4 +1,4 @@
-package main.java.com.yufeiblog.cassandra.dcmonitor;
+package com.yufeiblog.cassandra.dcmonitor;
 
 public class DCStatus {
     private String activeDC;
