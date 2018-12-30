@@ -10,9 +10,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-public class DCSwitchTokenAwarePolicy implements BaseSwitchLoadbalancePolicy {
+public class DCSwitchTokenAwarePolicy implements SwitchLoadbalancePolicy {
 
-    private BaseSwitchLoadbalancePolicy childPolicy;
+    private SwitchLoadbalancePolicy childPolicy;
     @Override
     public void setLoaclDC(String dc) {
 

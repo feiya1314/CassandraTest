@@ -7,6 +7,10 @@
     <groupId>cassandraTest</groupId>
     <artifactId>cassandraTest</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.package.name>${project.artifactId}_${version}-${maven.build.timestamp}</project.package.name>
+        <jetcd-version>0.0.2</jetcd-version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -43,17 +47,31 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.coreos/jetcd-core -->
+        <dependency>
+            <groupId>com.coreos</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>${jetcd-version}</version>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <!--<finalName>${project.package.name}</finalName>-->
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
 
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
 
             </plugin>

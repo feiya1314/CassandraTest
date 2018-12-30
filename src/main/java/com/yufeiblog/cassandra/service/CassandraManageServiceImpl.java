@@ -2,12 +2,15 @@ package com.yufeiblog.cassandra.service;
 
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.schemabuilder.SchemaBuilder;
+import com.yufeiblog.cassandra.common.Condition;
 import com.yufeiblog.cassandra.common.SessionManager;
 import com.yufeiblog.cassandra.common.TableOptions;
 import com.yufeiblog.cassandra.result.CreateKeyspaceResult;
 import com.yufeiblog.cassandra.result.CreateUserResult;
+import com.yufeiblog.cassandra.result.FindResult;
 import com.yufeiblog.cassandra.result.Result;
 
+import java.util.List;
 import java.util.Map;
 
 public class CassandraManageServiceImpl implements CassandraManageService {
@@ -60,6 +63,11 @@ public class CassandraManageServiceImpl implements CassandraManageService {
        // resultSet.wasApplied();
         Result result = new CreateKeyspaceResult();
         return result;
+    }
+
+    @Override
+    public FindResult find(String tableName, String[] columns, List<Condition> conditions) {
+        return null;
     }
 }
 
