@@ -32,6 +32,11 @@ public class DCSwitchRoundRobinPolicy implements SwitchLoadbalancePolicy {
     }
 
     @Override
+    public void setDegraded(boolean isDegraded) {
+
+    }
+
+    @Override
     public void init(Cluster cluster, Collection<Host> hosts) {
         if (localDc != UNSET)
             logger.info("Using provided data-center name '{}' for DCAwareRoundRobinPolicy", localDc);

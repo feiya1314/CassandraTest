@@ -24,6 +24,11 @@ public class DCSwitchTokenAwarePolicy implements SwitchLoadbalancePolicy {
     }
 
     @Override
+    public void setDegraded(boolean isDegraded) {
+        
+    }
+
+    @Override
     public void init(Cluster cluster, Collection<Host> hosts) {
 
     }

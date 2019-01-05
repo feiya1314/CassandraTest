@@ -1,16 +1,33 @@
 package com.yufeiblog.cassandra.test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yufeiblog.cassandra.SessionManager;
+import com.yufeiblog.cassandra.service.ICassandraManageService;
+import com.yufeiblog.cassandra.service.CassandraManageService;
 
-import java.io.IOException;
-import java.util.Map;
+abstract class BaseTest {
 
-public class BaseTest {
-    public static void main(String[] args) throws IOException{
-        String rep = "{\"class\": \"NetworkTopologyStrategy\",\"DC1\": \"2\",\"DC2\": \"2\"}";
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> replication = null;
-        replication = objectMapper.readValue(rep,Map.class);
-        System.out.println(replication.toString());
+    protected int appId = 20190103;
+    protected String replication = "{\"class\": \"NetworkTopologyStrategy\",\"DC1\": \"2\",\"DC2\": \"2\"}";
+    protected String tableName = "yftest3";
+    protected String username = "cassandra";
+    protected String password = "cassandra";
+    protected String contactPoints = "192.168.3.8";
+    protected ICassandraManageService service;
+
+    public BaseTest() {
+        init();
     }
+
+    abstract void execute();
+
+    protected void init() {
+        SessionManager.Builder builder = SessionManager.builder()
+                .withCredentials(username, password)
+                .withContactPoints(contactPoints)
+                .withReplication(replication);
+                //.withLoadBalancingPolicy()
+        SessionManager sessionManager =builder.build();
+        service = new CassandraManageService(sessionManager.getSessionRepository());
+    }
+
 }

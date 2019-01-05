@@ -6,7 +6,7 @@ import com.coreos.jetcd.Watch;
 import com.coreos.jetcd.data.ByteSequence;
 import com.coreos.jetcd.watch.WatchResponse;
 import com.yufeiblog.cassandra.common.EtcdConfiguraion;
-import com.yufeiblog.cassandra.common.SessionRepository;
+import com.yufeiblog.cassandra.SessionRepository;
 
 public class DCStatusWatcher {
     private SessionRepository sessionRepository;

@@ -3,13 +3,13 @@ package com.yufeiblog.cassandra.test;
 import com.datastax.driver.core.*;
 import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
-import com.yufeiblog.cassandra.common.SessionManager;
+import com.yufeiblog.cassandra.SessionManager;
+import com.yufeiblog.cassandra.service.ICassandraManageService;
 import com.yufeiblog.cassandra.service.CassandraManageService;
-import com.yufeiblog.cassandra.service.CassandraManageServiceImpl;
 
 public class CassandraTest {
     public static void main(String[] args) {
-        Cluster cluster = null;
+       /* Cluster cluster = null;
         String keyspace = "mykeyspace";
         String tablenName = "mytest";
         KeyspaceMetadata keyspaceMetadata = null;
@@ -22,12 +22,13 @@ public class CassandraTest {
             sessionManager.setCassandraPassword("cassandra");
             sessionManager.setContactPoint("192.168.3.8");
             sessionManager.setReplication("{\"class\": \"NetworkTopologyStrategy\",\"DC1\": \"2\",\"DC2\": \"2\"}");
-            Session session = sessionManager.getSession();
+            //Session session = sessionRepository.getSession();
+            Session session = null ;
             cluster = session.getCluster();
-            CassandraManageService cassandraManageService = new CassandraManageServiceImpl(sessionManager);
-            cassandraManageService.createUser("feiya", "yf.test");
+            ICassandraManageService ICassandraManageService = new CassandraManageService(sessionManager);
+            ICassandraManageService.createUser("feiya", "yf.test");
 
-            cassandraManageService.createKeyspace("feiya1314");
+            ICassandraManageService.createKeyspace(121);
             ResultSet resultSet = session.execute("select release_version from system.local");
             Row row = resultSet.one();
             //QueryBuilder.decr()
@@ -57,6 +58,7 @@ public class CassandraTest {
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
-        }
+        }*/
     }
+
 }

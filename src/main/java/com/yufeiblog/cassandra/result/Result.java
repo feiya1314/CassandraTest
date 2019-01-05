@@ -1,12 +1,13 @@
 package com.yufeiblog.cassandra.result;
 
 import com.yufeiblog.cassandra.common.Constant;
+import com.yufeiblog.cassandra.common.ReturnCode;
 
-public abstract class Result {
+public class Result {
     private String returnCode;
     private String returnMsg;
     public boolean isSuccess(){
-        if(Constant.SUCCESS.equals(returnCode)){
+        if(ReturnCode.SUCCESS.equals(returnCode)){
             return true;
         }
         return false;
