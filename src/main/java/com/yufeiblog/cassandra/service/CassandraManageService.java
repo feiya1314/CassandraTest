@@ -91,15 +91,18 @@ public class CassandraManageService extends BaseService implements ICassandraMan
             }
         }
 
-        for (int i = 0; i < orders.length; i++) {
-            String[] clusterKey = StringUtils.split(orders[i], " ");
-            create.withOptions().clusteringOrder(clusterKey[0], SchemaBuilder.Direction.valueOf(clusterKey[1].toUpperCase()));
-        }
-
         for (Column column : columns) {
             create.addColumn(column.getColumnName(), DataType.varchar());
         }
-        ResultSet resultSet = sessionRepository.getSession().execute(create);
+
+        Create.Options clusterOptions=create.withOptions();
+        for (int i = 0; i < orders.length; i++) {
+            String[] clusterKey = StringUtils.split(orders[i], " ");
+            SchemaBuilder.Direction direction = SchemaBuilder.Direction.valueOf(clusterKey[1].toUpperCase());
+            clusterOptions.clusteringOrder(clusterKey[0],direction);
+        }
+
+        ResultSet resultSet = sessionRepository.getSession().execute(clusterOptions);
         result = new Result();
         result.setReturnCode(ReturnCode.SUCCESS);
 

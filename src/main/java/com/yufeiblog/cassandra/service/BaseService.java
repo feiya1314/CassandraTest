@@ -9,23 +9,17 @@ import com.yufeiblog.cassandra.SessionRepository;
 import com.yufeiblog.cassandra.utils.Utils;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BaseService {
-    protected SessionManager sessionManager;
     protected String createUser = "CREATE USER %s WITH PASSWORD '%s' NOSUPERUSER";
     protected String grantPermissionSelect = "GRANT SELECT ON ALL KEYSPACES TO '%s'";
     protected String grantPermissionModify = "GRANT MODIFY ON ALL KEYSPACES TO '%s'";
-    protected Map<String, Statement> statementCache;
-    protected Integer appId;
+    protected Map<String, Statement> statementCache = new ConcurrentHashMap<>();
     protected SessionRepository sessionRepository;
 
     public BaseService(SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
-    }
-
-    public BaseService(int appId, SessionRepository sessionRepository) {
-        this(sessionRepository);
-        this.appId = appId;
     }
 
     protected Statement prepareStatement(int appId, String sql) {
@@ -33,10 +27,11 @@ public class BaseService {
         return statement;
     }
 
-    protected boolean isKeyspaceExist(int appId){
+    protected boolean isKeyspaceExist(int appId) {
         KeyspaceMetadata keyspaceMetadata = sessionRepository.getSession().getCluster().getMetadata().getKeyspace(Utils.getKeyspace(appId));
         return keyspaceMetadata != null;
     }
+
     protected boolean isTableExist(int appId, String tableName) {
         TableMetadata tableMetadata = sessionRepository.getSession().getCluster().getMetadata().getKeyspace(Utils.getKeyspace(appId)).getTable(tableName);
         return tableMetadata != null;

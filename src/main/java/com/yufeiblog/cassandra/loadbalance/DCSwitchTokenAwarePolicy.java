@@ -13,6 +13,9 @@ import java.util.Set;
 public class DCSwitchTokenAwarePolicy implements SwitchLoadbalancePolicy {
 
     private SwitchLoadbalancePolicy childPolicy;
+    private String localDC;
+    private String isShard;
+    private String isDegraded;
     @Override
     public void setLoaclDC(String dc) {
 
