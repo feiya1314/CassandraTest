@@ -2,6 +2,7 @@ package com.yufeiblog.cassandra.loadbalance;
 
 import com.datastax.driver.core.*;
 import com.google.common.base.Joiner;
+import com.google.common.collect.AbstractIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,7 @@ public class DCSwitchRoundRobinPolicy implements SwitchLoadbalancePolicy {
     private final AtomicInteger index = new AtomicInteger();
     volatile String localDc;
     private volatile Configuration configuration;
-    //private final int usedHostsPerRemoteDc;
+    private final int usedHostsPerRemoteDc=0;
 
     @Override
     public void setLoaclDC(String dc) {
@@ -76,14 +77,45 @@ public class DCSwitchRoundRobinPolicy implements SwitchLoadbalancePolicy {
 
     @Override
     public HostDistance distance(Host host) {
-        return null;
+        String dc = dc(host);
+        if (dc == UNSET || dc.equals(localDc))
+            return HostDistance.LOCAL;
+
+        CopyOnWriteArrayList<Host> dcHosts = perDcLiveHosts.get(dc);
+        if (dcHosts == null || usedHostsPerRemoteDc == 0)
+            return HostDistance.IGNORED;
+
+        // We need to clone, otherwise our subList call is not thread safe
+        dcHosts = cloneList(dcHosts);
+        return dcHosts.subList(0, Math.min(dcHosts.size(), usedHostsPerRemoteDc)).contains(host)
+                ? HostDistance.REMOTE
+                : HostDistance.IGNORED;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static CopyOnWriteArrayList<Host> cloneList(CopyOnWriteArrayList<Host> list) {
+        return (CopyOnWriteArrayList<Host>) list.clone();
     }
 
     @Override
     public Iterator<Host> newQueryPlan(String loggedKeyspace, Statement statement) {
+        CopyOnWriteArrayList<Host> localLiveHosts = perDcLiveHosts.get(localDc);
+        final List<Host> hosts = localLiveHosts == null ? Collections.<Host>emptyList() : cloneList(localLiveHosts);
+        final int startIdx = index.getAndIncrement();
+
         return null;
     }
 
+    private class HostIterator extends AbstractIterator<Host>{
+
+        public HostIterator(String loggedKeyspace,List<Host> hosts){
+
+        }
+        @Override
+        protected Host computeNext() {
+            return null;
+        }
+    }
     @Override
     public void onAdd(Host host) {
 
