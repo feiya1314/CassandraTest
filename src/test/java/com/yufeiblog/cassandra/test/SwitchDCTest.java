@@ -8,7 +8,7 @@ import org.junit.Test;
 public class SwitchDCTest extends BaseTest {
 
     @Override
-    void execute() {
+    public void run() {
         String[] pri =new String[3];
         pri[0]="uid";
         pri[1]="prim1";
@@ -27,7 +27,12 @@ public class SwitchDCTest extends BaseTest {
         System.exit(0);
     }
 
+    @Override
+    public void test() {
+
+    }
+
     public static void main(String[] args) {
-        new SwitchDCTest().execute();
+        new SwitchDCTest().run();
     }
 }
