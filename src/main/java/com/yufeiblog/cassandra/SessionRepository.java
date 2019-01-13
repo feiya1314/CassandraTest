@@ -33,6 +33,8 @@ public class SessionRepository implements DCStatusListener {
         LoadBalancingPolicy loadBalancingPolicy = cluster.getConfiguration().getPolicies().getLoadBalancingPolicy();
         if (loadBalancingPolicy instanceof SwitchLoadbalancePolicy) {
             //todo switch
+            String activeDC=dcStatus.getActiveDC();
+            ((SwitchLoadbalancePolicy) loadBalancingPolicy).setLoaclDC(activeDC);
         }
         cluster.getConfiguration().getPoolingOptions().refreshConnectedHosts();
     }
