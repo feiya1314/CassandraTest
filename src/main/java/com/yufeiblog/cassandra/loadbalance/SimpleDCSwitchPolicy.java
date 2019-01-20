@@ -18,10 +18,12 @@ public class SimpleDCSwitchPolicy implements SwitchLoadbalancePolicy {
     private volatile Metadata clusterMetadata;
     private volatile ProtocolVersion protocolVersion;
     private volatile CodecRegistry codecRegistry;
+    private volatile boolean isShard = false;
+    private volatile boolean isDegraded = false;
 
     public SimpleDCSwitchPolicy(LoadBalancingPolicy childPolicy) {
-        if (childPolicy == null){
-            this.childPolicy= DCAwareRoundRobinPolicy.builder().build();
+        if (childPolicy == null) {
+            this.childPolicy = DCAwareRoundRobinPolicy.builder().build();
         }
         this.childPolicy = childPolicy;
     }
