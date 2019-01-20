@@ -8,7 +8,6 @@ import com.google.common.collect.Lists;
 
 import java.nio.ByteBuffer;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SimpleDCSwitchPolicy implements SwitchLoadbalancePolicy {
 
@@ -108,7 +107,6 @@ public class SimpleDCSwitchPolicy implements SwitchLoadbalancePolicy {
                         return host;
                     }
                 }
-
                 return endOfData();
             }
         };
@@ -116,22 +114,22 @@ public class SimpleDCSwitchPolicy implements SwitchLoadbalancePolicy {
 
     @Override
     public void onAdd(Host host) {
-
+        childPolicy.onAdd(host);
     }
 
     @Override
     public void onUp(Host host) {
-
+        childPolicy.onUp(host);
     }
 
     @Override
     public void onDown(Host host) {
-
+        childPolicy.onDown(host);
     }
 
     @Override
     public void onRemove(Host host) {
-
+        childPolicy.onRemove(host);
     }
 
     @Override

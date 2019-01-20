@@ -9,6 +9,7 @@ import com.coreos.jetcd.watch.WatchEvent;
 import com.coreos.jetcd.watch.WatchResponse;
 import com.yufeiblog.cassandra.common.EtcdConfiguraion;
 import com.yufeiblog.cassandra.SessionRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class DCStatusWatcher {
     private static Logger LOGGER = LoggerFactory.getLogger(EtcdClientFactory.class);
     private DCStatusListener dcStatusListener;
-    private static final String ETCD_WATCH_DIR = "/cassandra/default/";
+    private static final String ETCD_WATCH_DIR = "/cassandra/default";
     private static final String ACTIVE_DC = "activeDC";
     private EtcdConfiguraion etcdConfiguraion;
     private boolean enable = true;
@@ -25,6 +26,7 @@ public class DCStatusWatcher {
     private Watch watch;
     private volatile boolean keepWatch = true;
     private volatile String previousStatus;
+    private DCStatus dcStatus = new DCStatus();
 
 
     public DCStatusWatcher(DCStatusListener dcStatusListener, EtcdConfiguraion etcdConfiguraion) {
@@ -39,6 +41,9 @@ public class DCStatusWatcher {
             etcdClientFactory = new EtcdClientFactory(etcdConfiguraion);
             etcdClientFactory.build();
             watch = etcdClientFactory.getWatchClient();
+            String watchDir = StringUtils.join(ETCD_WATCH_DIR,etcdConfiguraion.getServiceName(),etcdConfiguraion.getClusterName(),ACTIVE_DC,"/");
+            LOGGER.info("watch dir is : {}",watchDir);
+            watch(watchDir);
         }
     }
 
@@ -46,7 +51,7 @@ public class DCStatusWatcher {
         return etcdClientFactory.getEtcdClient();
     }
 
-    public void watch(String watchDir) {
+    private void watch(String watchDir) {
         ByteSequence byteSequence = new ByteSequence(watchDir);
         Watch.Watcher watcher = watch.watch(byteSequence);
 
@@ -71,7 +76,8 @@ public class DCStatusWatcher {
                         if (!previousStatus.equals(activeDC)){
                             LOGGER.info("watch etcd active dc changed ,activeDC:{}",activeDC);
                             previousStatus = activeDC;
-                            dcStatusListener.notifyClient(null);
+                            dcStatus.setActiveDC(activeDC);
+                            dcStatusListener.notifyClient(dcStatus);
                         }
                         LOGGER.info("watch etcd active dc changed ,but same as previous status : {}",previousStatus);
 

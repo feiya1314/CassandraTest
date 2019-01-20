@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class SessionManager {
     private Cluster cluster = null;
-    private String contactPoint = "192.168.3.8";
+    private String contactPoint ;
     private SessionRepository sessionRepository;
     private Map<String, Object> replication = null;
     //private String port
@@ -93,7 +93,7 @@ public class SessionManager {
         }
     }
 
-    public void init() {
+    private void init() {
         Cluster.Builder builder = Cluster.builder()
                 .addContactPointsWithPorts(prepareContactPoints(contactPoint))
                 .withAuthProvider(new PlainTextAuthProvider(cassandraUserName, cassandraPassword))
