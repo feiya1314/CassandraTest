@@ -4,12 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yufei.cassandraTest</groupId>
+    <parent>
+        <groupId>com.yufei.test</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../parent/pom.xml</relativePath>
+    </parent>
+    <groupId>com.yufei.test</groupId>
     <artifactId>cassandraTest</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <properties>
-        <project.package.name>${project.artifactId}_${version}-${maven.build.timestamp}</project.package.name>
         <jetcd-version>0.0.2</jetcd-version>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
     <packaging>jar</packaging>
 
@@ -71,7 +76,6 @@
         <dependency>
             <groupId>com.coreos</groupId>
             <artifactId>jetcd-core</artifactId>
-            <version>0.0.2</version>
         </dependency>
 
         <dependency>
